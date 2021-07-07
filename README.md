@@ -46,6 +46,13 @@ yarn
 yarn start
 ```
 
+## Run the example
+```shell
+cd example
+yarn
+yarn start
+```
+
 ## Contributing
 
 Pull requests are welcome.
