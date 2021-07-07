@@ -9,6 +9,14 @@ const rootStyle: CSS.Properties<string, string> = {
   width: '100%',
 };
 
+const tabsContainerParent: CSS.Properties<string, string> = {
+  position: 'absolute',
+  left: '0',
+  right: '0',
+  textAlign: 'center',
+  zIndex: 2,
+};
+
 /* styling for the topmost bar containing the labels */
 const tabsContainerStyle: CSS.Properties<string, string> = {
   backgroundColor: '#e8e1e2',
@@ -17,7 +25,6 @@ const tabsContainerStyle: CSS.Properties<string, string> = {
   borderRadius: '5px',
   height: '20px',
   margin: '0 auto',
-  position: 'relative',
   zIndex: 1,
 };
 
@@ -86,23 +93,25 @@ export default function OsxTabs(props: PropTypes): JSX.Element {
 
   return (
     <div style={rootStyle}>
-      <div style={tabsContainerStyle}>
-        {tabLabels.map((lbl, idx) => {
-          const bStyle = {};
-          Object.assign(bStyle, buttonStyle);
-          if (selectedIndex === idx) Object.assign(bStyle, tabActiveStyle);
+      <div style={tabsContainerParent}>
+        <div style={tabsContainerStyle}>
+          {tabLabels.map((lbl, idx) => {
+            const bStyle = {};
+            Object.assign(bStyle, buttonStyle);
+            if (selectedIndex === idx) Object.assign(bStyle, tabActiveStyle);
 
-          return (
-            <div key={lbl} style={buttonContainerStyle}>
-              <button style={bStyle} onClick={() => setSelectedIndex(idx)}>
-                {lbl}
-              </button>
-              {idx !== tabLabels.length - 1 ? (
-                <div style={separatorStyle} />
-              ) : null}
-            </div>
-          );
-        })}
+            return (
+              <div key={lbl} style={buttonContainerStyle}>
+                <button style={bStyle} onClick={() => setSelectedIndex(idx)}>
+                  {lbl}
+                </button>
+                {idx !== tabLabels.length - 1 ? (
+                  <div style={separatorStyle} />
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
       </div>
       <div style={bodyContainerStyle}>
         <div style={bodyPadStyle}>{tabBodies[selectedIndex]}</div>

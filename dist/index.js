@@ -5,6 +5,13 @@ var rootStyle = {
     height: '100%',
     width: '100%',
 };
+var tabsContainerParent = {
+    position: 'absolute',
+    left: '0',
+    right: '0',
+    textAlign: 'center',
+    zIndex: 2,
+};
 /* styling for the topmost bar containing the labels */
 var tabsContainerStyle = {
     backgroundColor: '#e8e1e2',
@@ -13,7 +20,6 @@ var tabsContainerStyle = {
     borderRadius: '5px',
     height: '20px',
     margin: '0 auto',
-    position: 'relative',
     zIndex: 1,
 };
 /* style for the active tab */
@@ -66,15 +72,16 @@ export default function OsxTabs(props) {
     if (tabLabels.length !== tabBodies.length)
         throw new Error('tabLabels and tabBodies must be the same length!');
     return (React.createElement("div", { style: rootStyle },
-        React.createElement("div", { style: tabsContainerStyle }, tabLabels.map(function (lbl, idx) {
-            var bStyle = {};
-            Object.assign(bStyle, buttonStyle);
-            if (selectedIndex === idx)
-                Object.assign(bStyle, tabActiveStyle);
-            return (React.createElement("div", { key: lbl, style: buttonContainerStyle },
-                React.createElement("button", { style: bStyle, onClick: function () { return setSelectedIndex(idx); } }, lbl),
-                idx !== tabLabels.length - 1 ? (React.createElement("div", { style: separatorStyle })) : null));
-        })),
+        React.createElement("div", { style: tabsContainerParent },
+            React.createElement("div", { style: tabsContainerStyle }, tabLabels.map(function (lbl, idx) {
+                var bStyle = {};
+                Object.assign(bStyle, buttonStyle);
+                if (selectedIndex === idx)
+                    Object.assign(bStyle, tabActiveStyle);
+                return (React.createElement("div", { key: lbl, style: buttonContainerStyle },
+                    React.createElement("button", { style: bStyle, onClick: function () { return setSelectedIndex(idx); } }, lbl),
+                    idx !== tabLabels.length - 1 ? (React.createElement("div", { style: separatorStyle })) : null));
+            }))),
         React.createElement("div", { style: bodyContainerStyle },
             React.createElement("div", { style: bodyPadStyle }, tabBodies[selectedIndex]))));
 }
