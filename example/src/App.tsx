@@ -18,7 +18,6 @@ const rStyle: CSS.Properties<string, string> = {
   height: '90%',
   width: '300px',
   marginTop: '20px',
-  border: '1px solid black',
   padding: '10px',
   paddingBottom: '20px',
 };

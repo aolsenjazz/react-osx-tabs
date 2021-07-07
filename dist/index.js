@@ -33,6 +33,10 @@ var buttonStyle = {
     paddingLeft: '12px',
     paddingRight: '12px',
 };
+var buttonContainerStyle = {
+    display: 'inline-block',
+    verticalAlign: 'top',
+};
 /* styling for separators in between labels */
 var separatorStyle = {
     height: '14px',
@@ -43,7 +47,7 @@ var separatorStyle = {
 };
 /* root container for tab bodies */
 var bodyContainerStyle = {
-    position: 'absolute',
+    position: 'relative',
     top: '10px',
     backgroundColor: '#f0ebec',
     border: '1px solid #e2dbdc',
@@ -67,7 +71,7 @@ export default function OsxTabs(props) {
             Object.assign(bStyle, buttonStyle);
             if (selectedIndex === idx)
                 Object.assign(bStyle, tabActiveStyle);
-            return (React.createElement(React.Fragment, null,
+            return (React.createElement("div", { key: lbl, style: buttonContainerStyle },
                 React.createElement("button", { style: bStyle, onClick: function () { return setSelectedIndex(idx); } }, lbl),
                 idx !== tabLabels.length - 1 ? (React.createElement("div", { style: separatorStyle })) : null));
         })),

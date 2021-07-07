@@ -40,6 +40,11 @@ const buttonStyle: CSS.Properties<string, string> = {
   paddingRight: '12px',
 };
 
+const buttonContainerStyle: CSS.Properties<string, string> = {
+  display: 'inline-block',
+  verticalAlign: 'top',
+};
+
 /* styling for separators in between labels */
 const separatorStyle: CSS.Properties<string, string> = {
   height: '14px',
@@ -51,7 +56,7 @@ const separatorStyle: CSS.Properties<string, string> = {
 
 /* root container for tab bodies */
 const bodyContainerStyle: CSS.Properties<string, string> = {
-  position: 'absolute',
+  position: 'relative',
   top: '10px',
   backgroundColor: '#f0ebec',
   border: '1px solid #e2dbdc',
@@ -88,14 +93,14 @@ export default function OsxTabs(props: PropTypes): JSX.Element {
           if (selectedIndex === idx) Object.assign(bStyle, tabActiveStyle);
 
           return (
-            <>
+            <div key={lbl} style={buttonContainerStyle}>
               <button style={bStyle} onClick={() => setSelectedIndex(idx)}>
                 {lbl}
               </button>
               {idx !== tabLabels.length - 1 ? (
                 <div style={separatorStyle} />
               ) : null}
-            </>
+            </div>
           );
         })}
       </div>
