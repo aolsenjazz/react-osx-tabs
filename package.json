@@ -1,6 +1,6 @@
 {
   "name": "@alexanderolsen/react-osx-tabs",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Tab layout meant to look like OSX tab layouts",
   "main": "./dist/index.js",
   "author": "Alexander Olsen",

@@ -68,7 +68,7 @@ const bodyPadStyle: CSS.Properties<string, string> = {
 
 type PropTypes = {
   tabLabels: string[];
-  tabBodies: JSX.Element[];
+  tabBodies: (JSX.Element | React.FunctionComponent)[];
 };
 
 export default function OsxTabs(props: PropTypes): JSX.Element {
